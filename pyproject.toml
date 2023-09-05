@@ -1,0 +1,29 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyMMT"
+version = "1.0.0"
+authors = [
+  { name="Samuel Wyatt", email="swyatt@arizona.edu" },
+  { name="Manisha Shrestha", email="mshrestha1@arizona.edu" },
+  { name="Griffin Hosseinzadeh", email="griffin0@arizona.edu" }
+]
+description = "A python API wrapper for the MMT Observatory"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    "setuptools_scm",
+    "ipykernel", # Support for Jupyter notebooks
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/SAGUARO-MMA/PyMMT"
+"Bug Tracker" = "https://github.com/SAGUARO-MMA/PyMMT/issues"
