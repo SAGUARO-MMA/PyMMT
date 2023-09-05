@@ -6,8 +6,9 @@ This repository is designed to facilitate submitting a rapid Target of Opprotuni
 To get the repository (in a bash/unix terminal)
 ```bash
 git-clone repository
+python -m pip install -e .
+#or
 python -m pip install pymmt
-or pip install pymmt
 ```
 
 ## Using the API Wrapper
