@@ -224,14 +224,14 @@ if you don't pass any params into the function it will just find the current ins
 
 ```python
 from datetime import datetime, timedelta
-api = pymmt.api()
-current_instruments = api.get_instruments()
+insts = pymmt.Instruments()
+current_instruments = insts.get_instruments()
 
 #you can look into the future to see what instruments will be available:
-future_instruments = api.get_instruments(date=datetime.datetime.now()+timedelta(months=1))
+future_instruments = insts.get_instruments(date=datetime.datetime.now()+timedelta(months=1))
 
 #you can look through the entire published schedule to see when a certain instrument will be on the telescope (Binospec = 16, MMIRS = 15)
-my_instrument = api.get_instruments(instrumentid=16)
+my_instrument = insts.get_instruments(instrumentid=16)
 ```
 
 This function returns a list of dictionary elements with the values for: 
