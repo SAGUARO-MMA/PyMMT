@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8322354.svg)](https://doi.org/10.5281/zenodo.8322354)
 # PyMMT
 
-This repository is designed to facilitate submitting a rapid Target of Opprotunity (ToO) observation to Binospec at the [MMT](https://www.mmto.org/) with the goal to enable same-night spectroscopy of interesting transients. Here we will provide examples to install and upload targets.
+This repository is designed to facilitate rapid Target of Opportunity (ToO) observations to Binospec or MMIRS at the [MMT](https://www.mmto.org/) to enable same-night spectroscopy of interesting transients. Here we will provide examples to install and upload targets.
 
 ## Install
 To get the repository (in a bash/unix terminal)
