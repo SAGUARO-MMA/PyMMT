@@ -2,6 +2,7 @@ import os, json, requests, re, time
 from pathlib import Path
 from . import MMT_JSON_KEYS, LOCAL_TARGET_KEYS, isInt, isFloat
 from .instruments.binospec import validate as bino_validate
+from .instruments.MMTCam import validate as mmtcam_validate
 from .instruments.mmirs import validate as mmirs_validate
 from datetime import datetime
 
@@ -238,6 +239,12 @@ class Target(api):
             #Binospec
             if instrumentid in [16,'16']:
                 inst_errors, inst_warnings, inst_dict = bino_validate(selfdict)
+                errors.extend(inst_errors)
+                warnings.extend(inst_warnings)
+                self.__dict__.update(inst_dict)
+            #MMTCAM
+            if instrumentid in [6,'6']:
+                inst_errors, inst_warnings, inst_dict = mmtcam_validate(selfdict)
                 errors.extend(inst_errors)
                 warnings.extend(inst_warnings)
                 self.__dict__.update(inst_dict)
