@@ -72,12 +72,18 @@ For Binospec `observationtype:longslit`:
   * For `Longslit1_25`: id `131`
   * For `Longslit1_5`: id `114`
   * For `Longslit5`: id `112`
+* `exposuretime`: The observation exposure time in seconds
 
 For MMIRS `observationtype:longslit`:
 * `grism`: Valid options are `J`, `HK`, and `HK3`
+* `filter`: valid options are `Y`, `J`, `H`, `Ks`, `zJ`, `HK`, `HK3`, `Kspec`
 * `readtab`: Valid options are `ramp_4.426`
-* `slitwidth`: valid options are '1pixel', '2pixel', '3pixel', '4pixel', '5pixel','6pixel','12pixel'
+* `slitwidth`: valid options are `1pixel`, `2pixel`, `3pixel`, `4pixel`, `5pixel`, `6pixel`, `12pixel`
 * `slitwidthproperty`: valid options are 'long', 'short'
+* `maskid`: Can be a predefined machined mask, or a preset for imaging or spectroscopy:
+  * For imaging: id `110`
+  * For spectroscopy: id `111`
+* `exposuretime`: The observation exposure time in seconds
 
 Other observation metadata:
 
@@ -95,7 +101,6 @@ All metadata will be validated upon initialization. Once the target object has b
 import pymmt
 
 #example for Binospec imaging target payload:
-
 payload = {
   'objectid':'TARGETNAME',
   'ra':'12:34:56.78',
@@ -112,7 +117,6 @@ payload = {
 
 
 #example payload for Binospec longslit target payload
-
 payload = {
   'objectid':'Targetname',
   'ra':'12:34:56.78',
@@ -125,17 +129,36 @@ payload = {
   `maskid`:131,
   `filter`:'LP380'
   'visits':1,
+  'exposuretime':900,
   'numberexposures':2,
   'priority':1,
   'targetofopportunity':1
 }
-#example payload for MMIRS longslit target payload
 
-payload = {'dec': '-19:30:45.100', 'epoch': 'J2000', 'exposuretime': 450.0,
-        'filter': 'zJ', 'grating': '270','magnitude': 16.9, 'maskid': 111, 'notes': 'Demo observation request. Please do not observe this.',
-        'numberexposures': 3, 'objectid': 'AT2021fxy', 'observationtype': 'longslit','priority': 3, 'ra': '13:13:01.560',
-        'slitwidth': '1pixel', 'targetofopportunity': 0, 'visits': 1,'instrumentid':15, 'gain':'low',
-        'readtab': 'ramp_4.426', 'grism':'J', 'slitwidthproperty':'long', 'dithersize':'5' }
+#example payload for MMIRS longslit target payload
+payload = {
+  'objectid': 'AT2021fxy',
+  'ra': '13:13:01.560',
+  'dec': '-19:30:45.100',
+  'epoch': 'J2000',
+  'exposuretime': 450.0,
+  'filter': 'zJ',
+  'grism': 'J',
+  'magnitude': 16.9,
+  'maskid': 111,
+  'notes': 'Demo observation request. Please do not observe this.',
+  'numberexposures': 3,
+  'observationtype': 'longslit',
+  'priority': 3,
+  'slitwidth': '1pixel',
+  'targetofopportunity': 0,
+  'visits': 1,
+  'instrumentid':15,
+  'gain':'low',
+  'readtab': 'ramp_4.426',
+  'slitwidthproperty':'long',
+  'dithersize':'5'
+  }
 
 #this will create the target along with validating the payload information. It will inform the user of any errors or warnings associated with the metadata
 target = pymmt.Target(token=API_TOKEN, 
