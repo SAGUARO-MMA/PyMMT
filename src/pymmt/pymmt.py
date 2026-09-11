@@ -13,7 +13,7 @@ from .instruments.mmirs import validate as mmirs_validate
 
 BASE_URL = "https://scheduler.mmto.arizona.edu/APIv2"
 
-class api():
+class api:
 
     def __init__(self, base=BASE_URL, target=None, token=None):
         self.base = base
@@ -68,7 +68,7 @@ class api():
 
 
 class Target(api):
-    def __init__(self, token=None, verbose=True, payload={}):
+    def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self.verbose = verbose
         self.valid = False
         self.downloaded = False
@@ -79,7 +79,7 @@ class Target(api):
         }
 
         assert token is not None, 'Token cannot be None'
-        super().__init__(target='catalogTarget', token=token)
+        super().__init__(target='catalogTarget', token=token, base=base)
 
         allowed_keys = list(MMT_JSON_KEYS)
         self.__dict__.update((str(key).lower(), value) for key, value in payload.items() if str(key).lower() in allowed_keys)
@@ -466,7 +466,7 @@ class Target(api):
 
 
 class Instruments(api):
-    def __init__(self, token=None, verbose=True, payload={}):
+    def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self. verbose = verbose
         super().__init__(target='trimester//schedule/all/', token=token)
 
@@ -511,7 +511,7 @@ class Instruments(api):
 
 
 class Datalist(api):
-    def __init__(self, token=None, verbose=True, payload={}):
+    def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self.verbose = verbose
         self.data = []
         super().__init__(target='data/list/catalogtarget', token=token)
@@ -536,7 +536,7 @@ class Datalist(api):
 
 
 class Image(api):
-    def __init__(self, token=None, verbose=True, payload={}):
+    def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self. verbose = verbose
         super().__init__(target='data/download/datafile', token=token)
 
