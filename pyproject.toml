@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyMMT"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Samuel Wyatt", email="swyatt@arizona.edu" },
   { name="Manisha Shrestha", email="mshrestha1@arizona.edu" },

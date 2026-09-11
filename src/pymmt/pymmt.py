@@ -10,7 +10,7 @@ class api():
 
     def __init__(self, target=None, token=None):
 
-        self.base = 'https://scheduler.mmto.arizona.edu/APIv2'
+        self.base = 'https://scheduler-proxy.mmto.arizona.edu/APIv2'
         self.target = target
 
         if token is None:
