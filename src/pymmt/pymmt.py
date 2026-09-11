@@ -100,7 +100,7 @@ class Target(api):
 
         if 'ra' in selfkeys:
             ra = selfdict['ra']
-            r = re.compile('.{2}:.{2}:.{2}\.*')
+            r = re.compile(r'.{2}:.{2}:.{2}\.*')
             if not r.match(ra):
                 errors.append('Invalid format for field \'ra\' ['+ra+']. Valid format is dd:dd:dd.d')
         else:
@@ -108,7 +108,7 @@ class Target(api):
 
         if 'dec' in selfkeys:
             dec = selfdict['dec']
-            r = re.compile('.{2}:.{2}:.{2}\.*')
+            r = re.compile(r'.{2}:.{2}:.{2}\.*')
             isNeg = dec.startswith('-')
             if '-' in dec:
                 dec = dec.split('-')[1]
