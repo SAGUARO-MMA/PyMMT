@@ -1,16 +1,22 @@
-import os, json, requests, re, time
+import json
+import os
+import re
+import time
+from datetime import datetime
 from pathlib import Path
-from . import MMT_JSON_KEYS, LOCAL_TARGET_KEYS, isInt, isFloat
+
+import requests  # type: ignore
+
+from . import MMT_JSON_KEYS, isFloat, isInt
 from .instruments.binospec import validate as bino_validate
 from .instruments.mmirs import validate as mmirs_validate
-from datetime import datetime
 
+BASE_URL = "https://scheduler.mmto.arizona.edu/APIv2"
 
 class api():
 
-    def __init__(self, target=None, token=None):
-
-        self.base = 'https://scheduler-proxy.mmto.arizona.edu/APIv2'
+    def __init__(self, base=BASE_URL, target=None, token=None):
+        self.base = base
         self.target = target
 
         if token is None:
@@ -73,7 +79,7 @@ class Target(api):
         }
 
         assert token is not None, 'Token cannot be None'
-        super().__init__('catalogTarget', token)
+        super().__init__(target='catalogTarget', token=token)
 
         allowed_keys = list(MMT_JSON_KEYS)
         self.__dict__.update((str(key).lower(), value) for key, value in payload.items() if str(key).lower() in allowed_keys)
@@ -462,7 +468,7 @@ class Target(api):
 class Instruments(api):
     def __init__(self, token=None, verbose=True, payload={}):
         self. verbose = verbose
-        super().__init__('trimester//schedule/all/', token)
+        super().__init__(target='trimester//schedule/all/', token=token)
 
     def get_instruments(self, date=None, instrumentid=None, getAll=False):
         if date is None and instrumentid is None:
@@ -508,7 +514,7 @@ class Datalist(api):
     def __init__(self, token=None, verbose=True, payload={}):
         self.verbose = verbose
         self.data = []
-        super().__init__('data/list/catalogtarget', token)
+        super().__init__(target='data/list/catalogtarget', token=token)
 
 
     def get(self, targetid, data_type='raw'):
@@ -532,7 +538,7 @@ class Datalist(api):
 class Image(api):
     def __init__(self, token=None, verbose=True, payload={}):
         self. verbose = verbose
-        super().__init__('data/download/datafile', token)
+        super().__init__(target='data/download/datafile', token=token)
 
 
     def get(self, datafileid=None, filepath=os.getcwd()):
