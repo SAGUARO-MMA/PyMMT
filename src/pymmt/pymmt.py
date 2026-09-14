@@ -79,7 +79,7 @@ class Target(api):
         }
 
         assert token is not None, 'Token cannot be None'
-        super().__init__(target='catalogTarget', token=token, base=base)
+        super().__init__(base=base, target='catalogTarget', token=token)
 
         allowed_keys = list(MMT_JSON_KEYS)
         self.__dict__.update((str(key).lower(), value) for key, value in payload.items() if str(key).lower() in allowed_keys)
@@ -468,7 +468,7 @@ class Target(api):
 class Instruments(api):
     def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self. verbose = verbose
-        super().__init__(target='trimester//schedule/all/', token=token)
+        super().__init__(base=base, target='trimester//schedule/all/', token=token)
 
     def get_instruments(self, date=None, instrumentid=None, getAll=False):
         if date is None and instrumentid is None:
@@ -514,7 +514,7 @@ class Datalist(api):
     def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self.verbose = verbose
         self.data = []
-        super().__init__(target='data/list/catalogtarget', token=token)
+        super().__init__(base=base, target='data/list/catalogtarget', token=token)
 
 
     def get(self, targetid, data_type='raw'):
@@ -538,7 +538,7 @@ class Datalist(api):
 class Image(api):
     def __init__(self, token=None, verbose=True, payload={}, base=BASE_URL):
         self. verbose = verbose
-        super().__init__(target='data/download/datafile', token=token)
+        super().__init__(base=base, target='data/download/datafile', token=token)
 
 
     def get(self, datafileid=None, filepath=os.getcwd()):
